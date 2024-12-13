@@ -5,7 +5,9 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-
 // prototypes
+void    pf_parcer(char *format, va_list *args, int *len);
+int     ft_printf(char *format, ...);
+void	pf_putchar(int c, int *len);
 
 #endif
