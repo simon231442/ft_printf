@@ -4,7 +4,8 @@ NAME    = libftprintf.a
 TEST    = test_program
 
 SRCS    = ./srcs/ft_printf.c \
-          ./srcs/pf_letters.c
+          ./srcs/pf_letters.c \
+	  ./srcs/pf_numbers.c \
 
 OBJS    = $(SRCS:.c=.o)
 

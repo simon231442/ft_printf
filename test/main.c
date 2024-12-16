@@ -6,7 +6,7 @@
 /*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:36:49 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/15 18:04:39 by srenaud          ###   ########.fr       */
+/*   Updated: 2024/12/15 23:49:27 by srenaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	main(void)
 
 	printf("%d\n",ft_printf("ft_printf: %s", "Hello world!!\n"));
 	printf("%d\n",printf("printf:    %s", "Hello world!!\n"));
+
+	printf("%d",ft_printf("salut %d\n",123456789));
 	
 	return (0);
 }

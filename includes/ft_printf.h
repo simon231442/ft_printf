@@ -10,4 +10,5 @@ void    pf_parcer(char *format, va_list *args, int *len);
 int     ft_printf(char *format, ...);
 void	pf_putchar(int c, int *len);
 void    pf_putstr(char *str, int *len);
+void	pf_putnbr(long int n, int *len);
 #endif
