@@ -6,7 +6,7 @@
 /*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:36:49 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/15 23:49:27 by srenaud          ###   ########.fr       */
+/*   Updated: 2024/12/16 17:02:24 by srenaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,50 @@ int	main(void)
 	printf("%%%%\n");  // printf pour le deuxième test
 	write(1, "/_/ (_)_/ (_)      \n", 20);
 
-	printf("%d\n",ft_printf("ft_printf: %s", "Hello world!!\n"));
-	printf("%d\n",printf("printf:    %s", "Hello world!!\n"));
 
-	printf("%d",ft_printf("salut %d\n",123456789));
+	write(1,"\n\n\t%s%s%s\n",10);
+	printf("%d\n",ft_printf("ft_printf: %s", "Hello world!!"));
+	printf("%d\n",printf("   printf: %s", "Hello world!!"));
+	printf("	%d\n",ft_printf("ft_printf: %s", "top booooo"));
+	printf("	%d\n",printf("   printf: %s", "trop boooo"));
+
+	int	len;
+	len = 0;
+
+	write(1,"\n\n\t%d%d%d\n",10);
+	len = ft_printf("ft_printf	|%d|",123456789);
+	printf("	|%d|\n",len);
+	len = printf("   printf	|%d|",123456789);
+	printf("	|%d|\n",len);
 	
+	write(1,"\n\n\t%i%i%i\n",10);
+	len = ft_printf("ft_printf	|%i|",123456789);
+	printf("	|%i|\n",len);
+	len = printf("   printf	|%i|",123456789);
+	printf("	|%i|\n",len);
+
+	write(1,"\n\n\t%u%u%u\n",10);
+	len = ft_printf("ft_printf	|%u|",123456789);
+	printf("	|%u|\n",len);
+	len = printf("   printf	|%u|",123456789);
+	printf("	|%u|\n",len);
+	
+	write(1,"\n\n\t%x%x%x\n",10);
+	len = ft_printf("ft_printf	|%x|",255);
+	printf("	|%u|\n",len);
+	len = printf("   printf	|%x|",255);
+	printf("	|%u|\n",len);
+
+	len = ft_printf("ft_printf      |%x|", 0);
+	printf("        |%u|\n", len);
+	len = printf("   printf |%x|", 0);
+	printf("        |%u|\n", len);
+
+	len = ft_printf("ft_printf      |%x|", 42);
+	printf("        |%u|\n", len);
+	len = printf("   printf |%x|", 42);
+	printf("        |%u|\n", len);
+
 	return (0);
 }
 
