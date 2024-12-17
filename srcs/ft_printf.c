@@ -6,13 +6,13 @@
 /*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 12:07:50 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/16 17:08:02 by srenaud          ###   ########.fr       */
+/*   Updated: 2024/12/17 15:51:13 by srenaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	pf_parser(char *format, va_list *args, int *len)
+void	pf_parser(const char *format, va_list *args, int *len)
 {
 	if (*format == 'c')
 		pf_putchar(va_arg(*args, int), len);
@@ -25,17 +25,17 @@ void	pf_parser(char *format, va_list *args, int *len)
 	else if (*format == 'u')
 		pf_putnbr(va_arg(*args, unsigned int), len);
 	else if (*format == 'x')
-		pf_putnbr_16(va_arg(*args, unsigned int), format[-1], len);
+		pf_putnbr_16(va_arg(*args, unsigned int), *format, len);
 	else if (*format == 'X')
-		pf_putnbr_16(va_arg(*args, unsigned int), format[-1], len);
+		pf_putnbr_16(va_arg(*args, unsigned int), *format, len);
 	else if (*format == 'p')
-		pf_putnbr_16(va_arg(*args, unsigned int), format[-1], len);
+		pf_putptr(va_arg(*args, void *), len);
 	else
 		format--;
 	return ;
 }
 
-int	ft_printf(char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list		args;
 	int			len;

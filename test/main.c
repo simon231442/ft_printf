@@ -6,7 +6,7 @@
 /*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:36:49 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/16 17:02:24 by srenaud          ###   ########.fr       */
+/*   Updated: 2024/12/17 12:05:22 by srenaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(void)
 	write(1,"\n\n\t%s%s%s\n",10);
 	printf("%d\n",ft_printf("ft_printf: %s", "Hello world!!"));
 	printf("%d\n",printf("   printf: %s", "Hello world!!"));
-	printf("	%d\n",ft_printf("ft_printf: %s", "top booooo"));
-	printf("	%d\n",printf("   printf: %s", "trop boooo"));
+	printf("	%d\n",ft_printf("ft_printf: %s", NULL));
+	printf("	%d\n",printf("   printf: %s", NULL));
 
 	int	len;
 	len = 0;
@@ -52,11 +52,21 @@ int	main(void)
 	printf("	|%d|\n",len);
 	len = printf("   printf	|%d|",123456789);
 	printf("	|%d|\n",len);
+
+	len = ft_printf("ft_printf	|%d|",-123456789);
+	printf("	|%d|\n",len);
+	len = printf("   printf	|%d|",-123456789);
+	printf("	|%d|\n",len);
 	
 	write(1,"\n\n\t%i%i%i\n",10);
 	len = ft_printf("ft_printf	|%i|",123456789);
 	printf("	|%i|\n",len);
 	len = printf("   printf	|%i|",123456789);
+	printf("	|%i|\n",len);
+
+	len = ft_printf("ft_printf	|%i|",-123456789);
+	printf("	|%i|\n",len);
+	len = printf("   printf	|%i|",-123456789);
 	printf("	|%i|\n",len);
 
 	write(1,"\n\n\t%u%u%u\n",10);
@@ -67,19 +77,59 @@ int	main(void)
 	
 	write(1,"\n\n\t%x%x%x\n",10);
 	len = ft_printf("ft_printf	|%x|",255);
-	printf("	|%u|\n",len);
+	printf("	|%u|\n", len);
 	len = printf("   printf	|%x|",255);
 	printf("	|%u|\n",len);
 
-	len = ft_printf("ft_printf      |%x|", 0);
-	printf("        |%u|\n", len);
-	len = printf("   printf |%x|", 0);
-	printf("        |%u|\n", len);
+	len = ft_printf("ft_printf	|%x|", 0);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%x|", 0);
+	printf("	|%u|\n", len);
 
-	len = ft_printf("ft_printf      |%x|", 42);
-	printf("        |%u|\n", len);
-	len = printf("   printf |%x|", 42);
-	printf("        |%u|\n", len);
+	len = ft_printf("ft_printf	|%x|", 42);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%x|", 42);
+	printf("	|%u|\n", len);
+
+	write(1,"\n\n\t%X%X%X\n",10);
+	len = ft_printf("ft_printf	|%X|",255);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%X|",255);
+	printf("	|%u|\n",len);
+
+	len = ft_printf("ft_printf	|%X|", 0);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%X|", 0);
+	printf("	|%u|\n", len);
+
+	len = ft_printf("ft_printf	|%X|", 42);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%X|", 42);
+	printf("	|%u|\n", len);
+
+	write(1,"\n\n\t%p%p%p\n",10);
+	int	ptr;
+	len = ft_printf("ft_printf	|%p|", &ptr);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%p|", &ptr);
+	printf("	|%u|\n",len);
+
+	len = ft_printf("ft_printf	|%p|", NULL);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%p|", NULL);
+	printf("	|%u|\n",len);
+
+	len = ft_printf("ft_printf	|%p|", (void *)-14523);
+	printf("	|%u|\n", len);
+	len = printf("   printf	|%p|", (void *)-14523);
+	printf("	|%u|\n",len);
+
+	write(1,"\n\n\t%s%d%c\n",10);
+	len = ft_printf("ft_printf	|%s%d%c|","hello world", 123456789, 'Y');
+	printf("	|%d|\n",len);
+	len = printf("   printf	|%s%d%c|","hello world", 123456789, 'Y');
+	printf("	|%d|\n",len);
+	
 
 	return (0);
 }
@@ -91,70 +141,70 @@ int	main(void)
   / / / __|   
  / / | (__    
 /_/ (_)___|   
-              
-              
+			  
+			  
  _   __       
 (_) / /       
    / / ___    
   / / / __|   
  / / _\__ \   
 /_/ (_)___/   
-              
-              
+			  
+			  
  _   __       
 (_) / /       
    / / _ __   
   / / | '_ \  
  / / _| |_) | 
 /_/ (_) .__/  
-      | |     
-      |_|     
+	  | |     
+	  |_|     
  _   __   _   
 (_) / /  | |  
    / / __| |  
   / / / _` |  
  / / | (_| |  
 /_/ (_)__,_|  
-              
-              
+			  
+			  
  _   ___      
 (_) / (_)     
    / / _      
   / / | |     
  / / _| |     
 /_/ (_)_|     
-              
-              
+			  
+			  
  _   __       
 (_) / /       
    / /_   _   
   / /| | | |  
  / / | |_| |  
 /_/ (_)__,_|  
-              
-              
+			  
+			  
  _   __       
 (_) / /       
    / /__  __  
   / / \ \/ /  
  / / _ >  <   
 /_/ (_)_/\_\  
-              
-              
+			  
+			  
  _   ____   __
 (_) / /\ \ / /
    / /  \ V / 
   / /   /   \ 
  / / _ / /^\ \
 /_/ (_)\/   \/
-              
-              
+			  
+			  
  _   ___   __ 
 (_) / (_) / / 
    / /   / /  
   / /   / /   
  / / _ / / _  
 /_/ (_)_/ (_) 
-              
-              */
+			  
+			  */
 

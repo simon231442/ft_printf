@@ -6,7 +6,7 @@
 /*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:09:35 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/16 17:20:53 by srenaud          ###   ########.fr       */
+/*   Updated: 2024/12/17 15:59:04 by srenaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@ void	pf_putnbr(long int n, int *len)
 
 	if (n == -2147483648)
 	{
-		n *= -1;
-		len += write(1, "-2147483648", 1);
+		*len += write(1, "-2147483648", 11);
 		return ;
+	}
+	if (n < 0)
+	{
+		*len += write(1, "-", 1);
+		n *= -1;
 	}
 	if (n >= 10)
 	{
@@ -35,27 +39,44 @@ void	pf_putnbr(long int n, int *len)
 	return ;
 }
 
-
 void	pf_putnbr_16(long int n, char speci, int *len)
 {
-	char	*xX;
+	char	*set;
 
 	if (speci == 'X')
-		xX = "0123456789ABCDEF";
+		set = "0123456789ABCDEF";
 	else
-		xX = "0123456789abcdef";
-	if (speci == 'p')
-	{
-		if (n > 0)
-			len += write(1, "0x", 2);
-		else
-			len += write(1, "(nil)", 5);
+		set = "0123456789abcdef";
 	if (n >= 16)
 	{
 		pf_putnbr_16(n / 16, speci, len);
 		pf_putnbr_16(n % 16, speci, len);
 	}
 	if (n < 16)
-		*len += write(1, &xX[n], 1);
+		*len += write(1, &set[n], 1);
 	return ;
+}
+
+void	pf_putptr_16(uintptr_t n, int *len)
+{
+	char	*x;
+
+	x = "0123456789abcdef";
+	if (n >= 16)
+	{
+		pf_putptr_16(n / 16, len);
+		pf_putptr_16(n % 16, len);
+	}
+	if (n < 16)
+		*len += write(1, &x[n], 1);
+	return ;
+}
+
+void	pf_putptr(void *ptr, int *len)
+{
+	uintptr_t	p;
+
+	p = (uintptr_t)ptr;
+	*len += write(1, "0x", 2);
+	pf_putptr_16(p, len);
 }
