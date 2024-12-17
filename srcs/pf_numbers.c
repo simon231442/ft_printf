@@ -44,6 +44,12 @@ void	pf_putnbr_16(long int n, char speci, int *len)
 		xX = "0123456789ABCDEF";
 	else
 		xX = "0123456789abcdef";
+	if (speci == 'p')
+	{
+		if (n > 0)
+			len += write(1, "0x", 2);
+		else
+			len += write(1, "(nil)", 5);
 	if (n >= 16)
 	{
 		pf_putnbr_16(n / 16, speci, len);
