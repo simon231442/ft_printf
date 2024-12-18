@@ -1,210 +1,39 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 16:36:49 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/17 12:05:22 by srenaud          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "ft_printf.h"
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+#include "ft_printf.h"
 
-int	main(void)
+int main(int argc, char **argv)
 {
+	if (argc < 3)
+	{
+		write(2, "Usage: ./test_program <format> <value>\n", 39);
+		return (1);
+	}
 
-	write(1, " _   __           \n", 20);
-	write(1, "(_) / /           ", 19);
-	ft_printf("char = %c\n", 'z'); // ft_printf
-	write(1, "   / / ___        ", 19);
-	printf("char = %c\n", 'z');  // printf
-	write(1, "  / / / __|       \n", 20);
-	write(1, " / / | (__        \n", 20);
-	write(1, "/_/ (_)___|       \n", 20);
+	// Extraire le format
+	char *format = argv[1];
+	char *value = argv[2];
 
-	write(1, " _   ___   __     \n", 20);
-	write(1, "(_) / (_) / /     ", 19);
-	ft_printf("%%\n"); // ft_printf pour le premier test
-	write(1, "   / /   / /      ", 19);
-	printf("%%\n");  // printf pour le deuxième test
-	write(1, "  / /   / /       ", 19);
-	ft_printf("%%%%\n"); // ft_printf pour le premier test
-	write(1, " / / _ / / _      ", 19);
-	printf("%%%%\n");  // printf pour le deuxième test
-	write(1, "/_/ (_)_/ (_)      \n", 20);
-
-
-	write(1,"\n\n\t%s%s%s\n",10);
-	printf("%d\n",ft_printf("ft_printf: %s", "Hello world!!"));
-	printf("%d\n",printf("   printf: %s", "Hello world!!"));
-	printf("	%d\n",ft_printf("ft_printf: %s", NULL));
-	printf("	%d\n",printf("   printf: %s", NULL));
-
-	int	len;
-	len = 0;
-
-	write(1,"\n\n\t%d%d%d\n",10);
-	len = ft_printf("ft_printf	|%d|",123456789);
-	printf("	|%d|\n",len);
-	len = printf("   printf	|%d|",123456789);
-	printf("	|%d|\n",len);
-
-	len = ft_printf("ft_printf	|%d|",-123456789);
-	printf("	|%d|\n",len);
-	len = printf("   printf	|%d|",-123456789);
-	printf("	|%d|\n",len);
-	
-	write(1,"\n\n\t%i%i%i\n",10);
-	len = ft_printf("ft_printf	|%i|",123456789);
-	printf("	|%i|\n",len);
-	len = printf("   printf	|%i|",123456789);
-	printf("	|%i|\n",len);
-
-	len = ft_printf("ft_printf	|%i|",-123456789);
-	printf("	|%i|\n",len);
-	len = printf("   printf	|%i|",-123456789);
-	printf("	|%i|\n",len);
-
-	write(1,"\n\n\t%u%u%u\n",10);
-	len = ft_printf("ft_printf	|%u|",123456789);
-	printf("	|%u|\n",len);
-	len = printf("   printf	|%u|",123456789);
-	printf("	|%u|\n",len);
-	
-	write(1,"\n\n\t%x%x%x\n",10);
-	len = ft_printf("ft_printf	|%x|",255);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%x|",255);
-	printf("	|%u|\n",len);
-
-	len = ft_printf("ft_printf	|%x|", 0);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%x|", 0);
-	printf("	|%u|\n", len);
-
-	len = ft_printf("ft_printf	|%x|", 42);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%x|", 42);
-	printf("	|%u|\n", len);
-
-	write(1,"\n\n\t%X%X%X\n",10);
-	len = ft_printf("ft_printf	|%X|",255);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%X|",255);
-	printf("	|%u|\n",len);
-
-	len = ft_printf("ft_printf	|%X|", 0);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%X|", 0);
-	printf("	|%u|\n", len);
-
-	len = ft_printf("ft_printf	|%X|", 42);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%X|", 42);
-	printf("	|%u|\n", len);
-
-	write(1,"\n\n\t%p%p%p\n",10);
-	int	ptr;
-	len = ft_printf("ft_printf	|%p|", &ptr);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%p|", &ptr);
-	printf("	|%u|\n",len);
-
-	len = ft_printf("ft_printf	|%p|", NULL);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%p|", NULL);
-	printf("	|%u|\n",len);
-
-	len = ft_printf("ft_printf	|%p|", (void *)-14523);
-	printf("	|%u|\n", len);
-	len = printf("   printf	|%p|", (void *)-14523);
-	printf("	|%u|\n",len);
-
-	write(1,"\n\n\t%s%d%c\n",10);
-	len = ft_printf("ft_printf	|%s%d%c|","hello world", 123456789, 'Y');
-	printf("	|%d|\n",len);
-	len = printf("   printf	|%s%d%c|","hello world", 123456789, 'Y');
-	printf("	|%d|\n",len);
-	
+	// Interpréter la valeur selon le format
+	if (format[1] == 'd' || format[1] == 'i')         // %d, %i
+		ft_printf(format, atoi(value));
+	else if (format[1] == 'u')                        // %u
+		ft_printf(format, (unsigned int)atoi(value));
+	else if (format[1] == 'x' || format[1] == 'X')    // %x, %X
+		ft_printf(format, (unsigned int)strtol(value, NULL, 10));
+	else if (format[1] == 's')                        // %s
+		ft_printf(format, value);
+	else if (format[1] == 'c')                        // %c
+		ft_printf(format, value[0]);
+	else if (format[1] == 'p')                        // %p
+		ft_printf(format, (void *)strtol(value, NULL, 16));
+	else if (format[1] == '%')                        // %%
+		ft_printf(format);
+	else
+	{
+		write(2, "Unsupported format.\n", 20);
+		return (1);
+	}
 
 	return (0);
 }
-
-/*
- _   __       
-(_) / /       
-   / / ___    
-  / / / __|   
- / / | (__    
-/_/ (_)___|   
-			  
-			  
- _   __       
-(_) / /       
-   / / ___    
-  / / / __|   
- / / _\__ \   
-/_/ (_)___/   
-			  
-			  
- _   __       
-(_) / /       
-   / / _ __   
-  / / | '_ \  
- / / _| |_) | 
-/_/ (_) .__/  
-	  | |     
-	  |_|     
- _   __   _   
-(_) / /  | |  
-   / / __| |  
-  / / / _` |  
- / / | (_| |  
-/_/ (_)__,_|  
-			  
-			  
- _   ___      
-(_) / (_)     
-   / / _      
-  / / | |     
- / / _| |     
-/_/ (_)_|     
-			  
-			  
- _   __       
-(_) / /       
-   / /_   _   
-  / /| | | |  
- / / | |_| |  
-/_/ (_)__,_|  
-			  
-			  
- _   __       
-(_) / /       
-   / /__  __  
-  / / \ \/ /  
- / / _ >  <   
-/_/ (_)_/\_\  
-			  
-			  
- _   ____   __
-(_) / /\ \ / /
-   / /  \ V / 
-  / /   /   \ 
- / / _ / /^\ \
-/_/ (_)\/   \/
-			  
-			  
- _   ___   __ 
-(_) / (_) / / 
-   / /   / /  
-  / /   / /   
- / / _ / / _  
-/_/ (_)_/ (_) 
-			  
-			  */
-
