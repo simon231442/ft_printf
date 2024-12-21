@@ -18,13 +18,49 @@ run_test()
 	echo -e "${CYAN}Test: $1${RESET}"
 
 	printf_output=$(printf "$2" "$3" 2>/dev/null)
+	printf_len=${#printf_output}
 	
 	ft_printf_output=$($EXEC "$2" "$3" 2>/dev/null)
+	ft_printf_len=$($EXEC "$f#!/bin/bash
 
-	echo -e "${YELLOW}printf:    ${RESET}|$printf_output|"
-	echo -e "${YELLOW}ft_printf: ${RESET}|$ft_printf_output|"
+# Couleurs pour l'affichage
+RED="\033[31m"
+GREEN="\033[32m"
+CYAN="\033[36m"
+YELLOW="\033[33m"
+RESET="\033[0m"
 
-	if [[ "$printf_output" == "$ft_printf_output" ]]; then
+EXEC="./test_program"
+
+run_test()
+{
+#       local desrciption="$1"
+#       local format="$2"
+#       local value="$3"
+
+        echo -e "${CYAN}Test: $1${RESET}"
+
+        printf_output=$(printf "$2" "$3" 2>/dev/null)
+        printf_len=${#printf_output}
+
+        ft_printf_output=$($EXEC "$2" "$3" 2>/dev/null)
+        ft_printf_len=$($EXEC "$format" "$value" >/dev/null; echo $?)
+
+	echo -e "${YELLOW}printf:    ${RESET}|${printf_output}|   |${printf_len}|"
+	echo "${YELLOW}ft_printf: ${RESET}|${ft_printf_output}|        |${ft_printf_len}|"
+
+        if [[ "$printf_output" == "$ft_printf_output" && "$printf_len" == "$ft_printf_len" ]]; then
+                echo -e "${GREEN}Result: OK${RESET}\n"
+        else
+                echo -e "${RED}Result: Mismatch${RESET}\n"
+        fi
+}
+ormat" "$value" >/dev/null; echo $?)
+
+	echo -e "${YELLOW}printf:    ${RESET}|$printf_output|	|$printf_len|"
+	echo -e "${YELLOW}ft_printf: ${RESET}|$ft_printf_output|	|$ft_printf_len|"
+
+	if [[ "$printf_output" == "$ft_printf_output" && "$printf_len" == "$ft_printf_len" ]]; then
 		echo -e "${GREEN}Result: OK${RESET}\n"
 	else
         	echo -e "${RED}Result: Mismatch${RESET}\n"

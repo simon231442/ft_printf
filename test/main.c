@@ -9,31 +9,33 @@ int main(int argc, char **argv)
 		write(2, "Usage: ./test_program <format> <value>\n", 39);
 		return (1);
 	}
+	int	len;
 
+	len = 0;
 	// Extraire le format
 	char *format = argv[1];
 	char *value = argv[2];
 
 	// Interpréter la valeur selon le format
 	if (format[1] == 'd' || format[1] == 'i')         // %d, %i
-		ft_printf(format, atoi(value));
+		len = ft_printf(format, atoi(value));
 	else if (format[1] == 'u')                        // %u
-		ft_printf(format, (unsigned int)atoi(value));
+		len = ft_printf(format, (unsigned int)atoi(value));
 	else if (format[1] == 'x' || format[1] == 'X')    // %x, %X
-		ft_printf(format, (unsigned int)strtol(value, NULL, 10));
+		len = ft_printf(format, (unsigned int)strtol(value, NULL, 10));
 	else if (format[1] == 's')                        // %s
-		ft_printf(format, value);
+		len = ft_printf(format, value);
 	else if (format[1] == 'c')                        // %c
-		ft_printf(format, value[0]);
+		len = ft_printf(format, value[0]);
 	else if (format[1] == 'p')                        // %p
-		ft_printf(format, (void *)strtol(value, NULL, 16));
+		len = ft_printf(format, (void *)strtol(value, NULL, 16));
 	else if (format[1] == '%')                        // %%
-		ft_printf(format);
+		len = ft_printf(format);
 	else
 	{
 		write(2, "Unsupported format.\n", 20);
 		return (1);
 	}
 
-	return (0);
+	return (len);
 }
