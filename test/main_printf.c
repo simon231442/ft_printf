@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ft_printf.h"
-
+#include <unistd.h>
 int main(int argc, char **argv)
 {
 	if (argc < 3)
@@ -18,19 +17,20 @@ int main(int argc, char **argv)
 
 	// Interpréter la valeur selon le format
 	if (format[1] == 'd' || format[1] == 'i')         // %d, %i
-		len = ft_printf(format, atoi(value));
+		len = printf(format, atoi(value));
 	else if (format[1] == 'u')                        // %u
-		len = ft_printf(format, (unsigned int)atoi(value));
+		len = printf(format, (unsigned int)atoi(value));
 	else if (format[1] == 'x' || format[1] == 'X')    // %x, %X
-		len = ft_printf(format, (unsigned int)strtol(value, NULL, 10));
+		len = printf(format, (unsigned int)strtol(value, NULL, 10));
 	else if (format[1] == 's')                        // %s
-		len = ft_printf(format, value);
+		len = printf(format, value);
 	else if (format[1] == 'c')                        // %c
-		len = ft_printf(format, value[0]);
+		len = printf(format, value[0]);
 	else if (format[1] == 'p')                        // %p
-		len = ft_printf(format, (void *)strtol(value, NULL, 16));
+		len = printf(format, (void *)strtol(value, NULL, 16));
 	else if (format[1] == '%')                        // %%
-		len = ft_printf(format, value);
+		len = printf(format, value);
+
 	else
 	{
 		write(2, "Unsupported format.\n", 20);
