@@ -120,16 +120,18 @@ run_test()
 	ft_printf_output_2=$($EXEC "$1" "$3" 2>/dev/null)
 	ft_printf_len_2=$?
 
+	pad_1=15
+	pad_2=15
 
 	wich_flag $1
 	echo -e "${flags[$flag_index]}"
-	echo -e "${flags[$flag_index+1]}${YELLOW}printf:    ${RESET}|$printf_output|	len = $printf_len"
-	echo -e "${flags[$flag_index+2]}${YELLOW}ft_printf: ${RESET}|$ft_printf_output|	len = $ft_printf_len"
-	echo -e "${flags[$flag_index+3]}${YELLOW}printf:    ${RESET}|$printf_output_2|	len = $printf_len_2"
-	echo -e "${flags[$flag_index+4]}${YELLOW}ft_printf: ${RESET}|$ft_printf_output_2|	len = $ft_printf_len_2"
+	printf "%-${pad_1}s${YELLOW}printf:    ${RESET}%-${pad_2}s${YELLOW}len = ${RESET}%d\n" "${flags[$flag_index+1]}" "|$printf_output|" "$printf_len" 
+	printf "%-${pad_1}s${YELLOW}ft_printf: ${RESET}%-${pad_2}s${YELLOW}len = ${RESET}%d\n" "${flags[$flag_index+2]}" "|$ft_printf_output|" "$ft_printf_len"
+	printf "%-${pad_1}s${YELLOW}printf:    ${RESET}%-${pad_2}s${YELLOW}len = ${RESET}%d\n" "${flags[$flag_index+3]}" "|$printf_output_2|" "$printf_len_2" 
+	printf "%-${pad_1}s${YELLOW}ft_printf: ${RESET}%-${pad_2}s${YELLOW}len = ${RESET}%d\n" "${flags[$flag_index+4]}" "|$ft_printf_output_2|" "$ft_printf_len_2"
 
 
-	if [[ "$printf_output" == "$ft_printf_output" && $printf_len == $ft_printf_len ]]; then
+	if [[ "$printf_output" == "$ft_printf_output" && $printf_len == $ft_printf_len && "$printf_output_2" == "$ft_printf_output_2" && $printf_len_2 == $ft_printf_len_2 ]]; then
 		echo -e "${flags[$flag_index+5]}${GREEN}Result: OK${RESET}\n"
 	else
         	echo -e "${flags[$flag_index+5]}${RED}Result: Mismatch${RESET}\n"
@@ -146,4 +148,4 @@ run_test %i -42 0
 run_test %u 42 7071707
 run_test %x 128 156
 run_test %X -2147483648 2147483647
-run_test %% "%" "%"
+run_test %% "%" "%%"

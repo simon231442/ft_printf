@@ -6,7 +6,7 @@
 /*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:09:35 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/17 15:59:04 by srenaud          ###   ########.fr       */
+/*   Updated: 2024/12/23 09:46:48 by srenaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ void	pf_putptr(void *ptr, int *len)
 	uintptr_t	p;
 
 	p = (uintptr_t)ptr;
+#ifdef __linux__
+	if (p == 0)
+	{
+		*len += write(1, "(nil)", 5);
+		return ;
+	}
+#endif
+	
 	*len += write(1, "0x", 2);
 	pf_putptr_16(p, len);
 }
