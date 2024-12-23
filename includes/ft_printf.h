@@ -6,7 +6,7 @@
 /*   By: srenaud <srenaud@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:00:51 by srenaud           #+#    #+#             */
-/*   Updated: 2024/12/17 16:01:28 by srenaud          ###   ########.fr       */
+/*   Updated: 2024/12/23 14:24:56 by srenaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdint.h>
+
+# ifdef __linux__
+#  define IS_LINUX 1
+# else
+#  define IS_LINUX 0
+# endif
 
 // prototypes
 void	pf_parser(const char *format, va_list *args, int *len);
