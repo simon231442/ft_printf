@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_printf.h"
+#include <string.h>
 
 int main(int argc, char **argv)
 {
@@ -23,8 +24,13 @@ int main(int argc, char **argv)
 		len = ft_printf(format, (unsigned int)atoi(value));
 	else if (format[1] == 'x' || format[1] == 'X')    // %x, %X
 		len = ft_printf(format, (unsigned int)strtol(value, NULL, 10));
-	else if (format[1] == 's')                        // %s
-		len = ft_printf(format, value);
+	else if (format[1] == 's')
+	{
+		if (strcmp(value, "NULL") == 0)
+			len = ft_printf(format, (void *)0);
+		else
+			len = ft_printf(format, value);
+		}
 	else if (format[1] == 'c')                        // %c
 		len = ft_printf(format, value[0]);
 	else if (format[1] == 'p')                        // %p

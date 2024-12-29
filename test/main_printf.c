@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
+
 int main(int argc, char **argv)
 {
 	if (argc < 3)
@@ -23,7 +25,12 @@ int main(int argc, char **argv)
 	else if (format[1] == 'x' || format[1] == 'X')    // %x, %X
 		len = printf(format, (unsigned int)strtol(value, NULL, 10));
 	else if (format[1] == 's')                        // %s
-		len = printf(format, value);
+	{
+                if (strcmp(value, "NULL") == 0)
+                        len = printf(format, (void *)0);
+                else
+                        len = printf(format, value);
+		}
 	else if (format[1] == 'c')                        // %c
 		len = printf(format, value[0]);
 	else if (format[1] == 'p')                        // %p
